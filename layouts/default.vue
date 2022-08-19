@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <nav-vue/>
       <nuxt />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

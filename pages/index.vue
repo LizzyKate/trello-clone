@@ -8,20 +8,20 @@
           </v-row>
           <v-icon @click="dialog = false">mdi-close</v-icon>
         </v-row>
-        <v-form ref="form" v-model="valid">
+        <v-form ref="form">
           <div class="d-flex flex-column">
             <v-text-field
               label="Board title"
               name="title"
               type="text" 
             ></v-text-field>
-            <v-btn v-if="enableColor === false" depressed @click="enableColor = true">
+            <v-btn depressed >
               Choose board color
             </v-btn>
             <br>
             <v-color-picker
            
-             v-if="enableColor === true"
+           
               dot-size="25"
               hide-inputs
               swatches-max-height="100"
@@ -62,7 +62,7 @@
                 </div>
               </template> -->
             </div>
-            <v-btn :disabled="!valid" color="primary" @click="createBoard"
+            <v-btn  color="primary" 
               >Submit</v-btn
             >
           </div>
@@ -79,12 +79,19 @@
 <script>
 export default {
   name: 'IndexPage',
+  
   data(){
     return{
       dialog:false
-    }
+    } 
   },
-
+// async asyncData(){
+//     let boardRefs = window.$nuxt.$fire.$firestore.collection('users').doc(window.$nuxt.$fire.auth.currentUser.uid).collection('boards')
+//     let boardData = []
+//     await boardsRef.get().then((querySnapShot) => {
+//       console.log(querySnapShot)
+//     })
+//   }, 
   methods:{
     addBoard(){
       this.dialog = true
