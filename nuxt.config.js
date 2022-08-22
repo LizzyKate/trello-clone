@@ -27,8 +27,9 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
-
+  plugins: [
+    '@/plugins/filters',
+  ],
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -63,9 +64,21 @@ export default {
             },
             ssr: false, // default
           },
-          fireStore:true,
+          firestore: {
+            memoryOnly: false, // default
+            chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
+            enablePersistence: true,
+            emulatorPort: 8080,
+            emulatorHost: 'localhost',
+            settings: {
+              experimentalForceLongPolling: true,
+              merge: true,
+              // Firestore Settings - currently only works in SPA mode
+            }
+          },
           storage: true,
         }
+        
       }
     ]
   ],
